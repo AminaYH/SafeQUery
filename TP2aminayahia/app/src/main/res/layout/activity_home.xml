@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeActivity">
+
+    <Button
+        android:id="@+id/buttonToCurrency"
+        android:layout_width="236dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="448dp"
+        android:text="go to Conversation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColorHighlight="@color/black"
+        android:background="@color/design_default_color_secondary"/>
+
+    <Button
+        android:id="@+id/buttonToTemperature"
+        android:layout_width="246dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="256dp"
+        android:text="Go to temperature "
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/purple_200"/>
+
+    <TextView
+        android:id="@+id/textViewToNavigate"
+        android:layout_width="233dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginBottom="100dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
