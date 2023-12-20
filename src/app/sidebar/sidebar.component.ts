@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import "bootstrap-icons/font/bootstrap-icons.css";
 
 @Component({
   selector: 'app-sidebar',
