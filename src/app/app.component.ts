@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import {RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
 import {
   NgbInputDatepicker,
   NgbNav,
@@ -13,18 +13,18 @@ import {
 import {TooltipModule} from "ngx-bootstrap/tooltip";
 import {NavbarComponent} from "./navbar/navbar.component";
 import {SidebarComponent} from "./sidebar/sidebar.component";
-import {UploadComponent} from "./upload/upload.component";
+import {HomepageComponent} from "./homepage/homepage.component";
+import {MainpageComponent} from "./mainpage/mainpage.component";
 
 @Component({
 
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, NgbNav, NgbNavItem, NgbNavOutlet, NgbNavLinkBase, NgbNavContent, NgbInputDatepicker, TooltipModule, NavbarComponent, SidebarComponent, UploadComponent],
+  imports: [CommonModule, RouterOutlet, NgbNav, NgbNavItem, NgbNavOutlet, NgbNavLinkBase, NgbNavContent, NgbInputDatepicker, TooltipModule, NavbarComponent, SidebarComponent, HomepageComponent, RouterLink, RouterLinkActive, MainpageComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'untitled2';
-  active = 1;
+
 
 }

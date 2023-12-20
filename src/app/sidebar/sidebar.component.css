@@ -1,0 +1,24 @@
+body {
+  background-color: #151515;
+}
+
+
+
+.sidebar {
+  position: fixed;
+  top: 23.1px;
+  bottom: 0;
+  left: 0;
+  padding: 58px 0 0; /* Height of navbar */
+  width: 240px;
+  z-index: 0;
+}
+
+
+
+.list-group-item{
+  top: 70px;
+}
+.color{
+  color: #8c97bd;
+}
