@@ -1,6 +1,7 @@
 import {Component, ElementRef, Input, SimpleChanges, ViewChild} from '@angular/core';
 import {SidebarComponent} from "../sidebar/sidebar.component";
 import {NavbarComponent} from "../navbar/navbar.component";
+import {TreeComponent} from "../tree/tree.component";
 
 
 @Component({
@@ -9,6 +10,7 @@ import {NavbarComponent} from "../navbar/navbar.component";
   imports: [
     SidebarComponent,
     NavbarComponent,
+    TreeComponent,
 
   ],
   templateUrl: './mainpage.component.html',
