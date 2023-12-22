@@ -78,6 +78,7 @@ export class TreeComponent {
   }
   hasChild =(_:number,node:TreeNode)=>!!node.children && node.children.length>0;
   loadData(node: TreeNode) {
+
     this.dataResults.push({ name: node.name, status: node.status });
     console.log('dataResults:', this.dataResults);
     this.dataResults.length > 0 ? (this.loading = false) : (this.loading = true);

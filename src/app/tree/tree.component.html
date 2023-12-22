@@ -1,5 +1,5 @@
-<div class="d-flex" style="background-color: #1f1f1f;width: 100%">
-  <div class="container flex-row justify-content-center  ">
+<div class="d-flex " style="background-color: #1f1f1f;width: 100%;transform: translateX(-39.5%)">
+  <div class="container flex-row justify-content-start ">
 
     <mat-tree [dataSource]="dataSource" [treeControl]="treeControl"  class="tree">
 
@@ -27,7 +27,7 @@
     <mat-card *ngFor="let res of dataResults ;let i=index">
       <mat-card-title class="p-5 px-5" style="width: 50px"> {{res.name}}</mat-card-title>
       <mat-card-subtitle>{{ getStatus(res.status) }}</mat-card-subtitle>
-      <mat-card (click)="deleteFile(i)"></mat-card>
+      <mat-icon (click)="deleteFile(i)" style="color: #151515">delete</mat-icon>
     </mat-card>
   </div>
 
