@@ -5,7 +5,7 @@
       <mat-tree-node *matTreeNodeDef="let node " matTreeNodeToggle class="nodeClick" (click)="loadData(node)">
         {{node.name}}
       </mat-tree-node>
-      <mat-nested-tree-node *matTreeNodeDef="let node; when:hasChild">
+      <mat-nested-tree-node *matTreeNodeDef="let node; when:hasChild" >
         <div class="nat-tree-node">
           <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle' + node.name">
             <mat-icon class="mat-icon-rtl-mirror">
@@ -22,7 +22,7 @@
     </mat-tree>
   </div>
   <div class="" style="">
-<!--    <mat-spinner *ngIf="loading" style="color: #8c97bd"></mat-spinner>-->
+    <mat-spinner *ngIf="loading" style="color: #8c97bd"></mat-spinner>
     <mat-card *ngFor="let res of dataResults ;let i=index">
       <mat-card-title class="p-5 px-5" style="width: 50px"> {{res.name}}</mat-card-title>
       <mat-card-subtitle>{{res.status}}</mat-card-subtitle>
