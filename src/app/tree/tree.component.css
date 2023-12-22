@@ -1,0 +1,18 @@
+.container{
+  background-color: #8c97bd;
+height: 200px;
+ width: 200px;
+}
+.nodeClick{
+  cursor: pointer;
+
+}
+.tree-invisible{
+  display: none;
+}
+.tree.mat-nested-tree-node div[role=group]{
+  padding-left: 40px;
+}
+.tree div[role=group]> .mat-tree-node{
+  padding-left: 40px;
+}
