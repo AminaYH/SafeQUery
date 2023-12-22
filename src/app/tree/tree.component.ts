@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {ChangeDetectorRef, Component, Input} from '@angular/core';
 import {NgClass, NgForOf, NgIf} from "@angular/common";
 import {MatTreeModule, MatTreeNestedDataSource} from "@angular/material/tree";
 import {NestedTreeControl} from "@angular/cdk/tree";
@@ -20,7 +20,13 @@ const fileData: TreeNode[] = [
     children: [
       {
         name: 'css',
-        status: true
+        status: true,
+        children: [
+          {
+            name: 'css',
+            status: true
+          }
+        ]
       }
     ]
   }, {
@@ -65,17 +71,17 @@ const fileData: TreeNode[] = [
 export class TreeComponent {
   treeControl =new NestedTreeControl<TreeNode>(node =>node.children);
   dataSource =new MatTreeNestedDataSource<TreeNode>();
-   dataResults:TreeNode[]=[];
+  @Input() dataResults:TreeNode[]=[];
    loading:boolean=true;
-  constructor() {
+  constructor(private cdr: ChangeDetectorRef) {
     this.dataSource.data=fileData;
   }
   hasChild =(_:number,node:TreeNode)=>!!node.children && node.children.length>0;
   loadData(node: TreeNode) {
-    console.log('loadData called:', node);
     this.dataResults.push({ name: node.name, status: node.status });
     console.log('dataResults:', this.dataResults);
     this.dataResults.length > 0 ? (this.loading = false) : (this.loading = true);
+
   }
 
   getStatus(status:boolean){
