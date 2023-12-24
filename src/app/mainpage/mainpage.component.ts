@@ -3,6 +3,7 @@ import {SidebarComponent} from "../sidebar/sidebar.component";
 import {NavbarComponent} from "../navbar/navbar.component";
 import {TreeComponent} from "../tree/tree.component";
 
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-mainpage',
@@ -10,7 +11,7 @@ import {TreeComponent} from "../tree/tree.component";
   imports: [
     SidebarComponent,
     NavbarComponent,
-    TreeComponent,
+    TreeComponent,HttpClientModule
 
   ],
   templateUrl: './mainpage.component.html',

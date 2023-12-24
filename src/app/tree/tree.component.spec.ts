@@ -11,7 +11,7 @@ describe('TreeComponent', () => {
       imports: [TreeComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(TreeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

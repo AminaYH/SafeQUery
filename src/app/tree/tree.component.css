@@ -1,7 +1,7 @@
 .container{
-  background-color: #8c97bd;
+  background-color: #000000;
 height: 900px;
- width: 300px;
+ width: 16%;
 }
 .nodeClick{
   cursor: pointer;

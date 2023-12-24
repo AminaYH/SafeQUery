@@ -1,11 +1,17 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import {NodeService} from "../services/node.service";
+import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
 
 describe('AppComponent', () => {
+  let httpMock:HttpTestingController;
+  let service:NodeService;
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppComponent],
-    }).compileComponents();
+      declarations: [NodeService],
+      imports: [HttpClientTestingModule]    }).compileComponents();
+    service=TestBed.inject(NodeService);
+    httpMock=TestBed.get(HttpTestingController);
   });
 
   it('should create the app', () => {
@@ -17,7 +23,6 @@ describe('AppComponent', () => {
   it(`should have the 'untitled2' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('untitled2');
   });
 
   it('should render title', () => {

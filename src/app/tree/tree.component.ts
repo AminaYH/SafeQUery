@@ -6,39 +6,13 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatCardModule} from "@angular/material/card";
+import { HttpClientModule,HttpClient } from '@angular/common/http';
 
-interface TreeNode {
-  name: string;
-  status: boolean;
-  children?: TreeNode[];
-}
+import {TreeNode}from "../interfaces/node";
+import {NodeService} from "../../services/node.service";
 
 const fileData: TreeNode[] = [
   {
-    name: 'css',
-    status: true,
-    children: [
-      {
-        name: 'css',
-        status: true,
-        children: [
-          {
-            name: 'css',
-            status: true
-          }
-        ]
-      }
-    ]
-  }, {
-    name: 'html',
-    status: true,
-    children: [
-      {
-        name: 'csjss',
-        status: false
-      }
-    ]
-  },{
     name: 'css',
     status: true,
     children: [
@@ -48,7 +22,20 @@ const fileData: TreeNode[] = [
       }
     ]
   },
-
+];
+const imageFileExtensions = [
+  ".jpg",
+  ".jpeg",
+  ".png",
+  ".gif",
+  ".bmp",
+  ".svg",
+  ".tif",
+  ".tiff",
+  ".webp",
+  ".ico",
+  ".raw",
+  ".eps",
 ];
 
 @Component({
@@ -63,8 +50,9 @@ const fileData: TreeNode[] = [
     MatIconModule,
     MatProgressSpinnerModule,
     MatCardModule,
-    NgIf
+    NgIf,
   ],
+  providers:[HttpClientModule],
   templateUrl: './tree.component.html',
   styleUrl: './tree.component.css'
 })
@@ -73,7 +61,8 @@ export class TreeComponent {
   dataSource =new MatTreeNestedDataSource<TreeNode>();
   @Input() dataResults:TreeNode[]=[];
    loading:boolean=true;
-  constructor(private cdr: ChangeDetectorRef) {
+
+  constructor(private cdr: ChangeDetectorRef,private fileUploadService: NodeService) {
     this.dataSource.data=fileData;
   }
   hasChild =(_:number,node:TreeNode)=>!!node.children && node.children.length>0;
@@ -96,5 +85,21 @@ export class TreeComponent {
   deleteFile(i:number){
     this.dataResults.splice(i,1);
     this.dataResults.length==0?this.loading=true :this.loading;
+  }
+  onFileChange(event: any) {
+    const fileList: FileList = event.target.files;
+    if (fileList.length > 0) {
+      const formData = new FormData();
+      formData.append('file', fileList[0]);
+
+      this.fileUploadService.uploadFile(formData).subscribe(
+        response => {
+          console.log('File uploaded successfully:', response);
+        },
+        error => {
+          console.error('Error uploading file:', error);
+        }
+      );
+    }
   }
 }
