@@ -52,7 +52,7 @@ const imageFileExtensions = [
     MatCardModule,
     NgIf,
   ],
-  providers:[HttpClientModule],
+  providers:[HttpClientModule,NodeService],
   templateUrl: './tree.component.html',
   styleUrl: './tree.component.css'
 })
@@ -62,7 +62,7 @@ export class TreeComponent {
   @Input() dataResults:TreeNode[]=[];
    loading:boolean=true;
 
-  constructor(private cdr: ChangeDetectorRef,private fileUploadService: NodeService) {
+  constructor(private cdr: ChangeDetectorRef,private fileUploadService: NodeService,private http: HttpClient) {
     this.dataSource.data=fileData;
   }
   hasChild =(_:number,node:TreeNode)=>!!node.children && node.children.length>0;
@@ -86,20 +86,37 @@ export class TreeComponent {
     this.dataResults.splice(i,1);
     this.dataResults.length==0?this.loading=true :this.loading;
   }
-  onFileChange(event: any) {
-    const fileList: FileList = event.target.files;
-    if (fileList.length > 0) {
-      const formData = new FormData();
-      formData.append('file', fileList[0]);
 
-      this.fileUploadService.uploadFile(formData).subscribe(
-        response => {
-          console.log('File uploaded successfully:', response);
-        },
-        error => {
-          console.error('Error uploading file:', error);
-        }
-      );
-    }
+  selectedFolder!: FileList
+
+  onFolderChange(event:any) {
+    this.selectedFolder = event.target.files;
+  }
+
+  getFolderData() {
+    this.fileUploadService.getFolder().subscribe(
+      response => {
+        console.log('Folder data retrieved successfully:', response);
+      },
+      error => {
+        console.error('Error retrieving folder data:', error);
+      }
+    );
+  }
+
+  uploadFolder() {
+    const folder = this.selectedFolder; // Use the selectedFolder variable
+    console.log('Files to upload:', folder);
+
+    this.fileUploadService.uploadFile(folder).subscribe(
+
+      response => {
+        console.log('Upload successful', response);
+      },
+      error => {
+        console.error('Error uploading folder', error);
+      }
+    );
+
   }
 }
