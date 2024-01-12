@@ -23,17 +23,18 @@
       </mat-nested-tree-node>
     </mat-tree>
     <ul id="listing" style="color: #8c97bd"></ul>
-    <form action="http://localhost:8080/upload" method="POST" (change)="onFolderChange($event)"   enctype="multipart/form-data">
+    <form  action="http://localhost:8080/api/upload" method="POST" (change)="onFolderChange($event)"   enctype="multipart/form-data">
       <input type="file" name="file" multiple webkitdirectory/>
       <button (click)="getFolderData()">Upload Folder</button>
 
     </form>
+    <button (click)="IterateFolderToTree()">Upload folder to tree</button>
 
   </div>
   <div class="" style="">
     <mat-spinner *ngIf="loading" style="color: #8c97bd"></mat-spinner>
     <mat-card *ngFor="let res of dataResults ;let i=index">
-      <mat-card-title class="p-5 px-5" style="width: 50px"> {{res.name}}</mat-card-title>
+      <mat-card-title class="p-2 px-2" style=""> {{res.name}}</mat-card-title>
       <mat-card-subtitle>{{ getStatus(res.status) }}</mat-card-subtitle>
       <mat-icon (click)="deleteFile(i)" style="color: #151515">delete</mat-icon>
     </mat-card>

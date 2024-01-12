@@ -10,18 +10,9 @@ import { HttpClientModule,HttpClient } from '@angular/common/http';
 
 import {TreeNode}from "../interfaces/node";
 import {NodeService} from "../../services/node.service";
+import {map} from "rxjs";
 
 const fileData: TreeNode[] = [
-  {
-    name: 'css',
-    status: true,
-    children: [
-      {
-        name: 'css',
-        status: true
-      }
-    ]
-  },
 ];
 const imageFileExtensions = [
   ".jpg",
@@ -58,7 +49,7 @@ const imageFileExtensions = [
 })
 export class TreeComponent {
   treeControl =new NestedTreeControl<TreeNode>(node =>node.children);
-  dataSource =new MatTreeNestedDataSource<TreeNode>();
+  public dataSource =new MatTreeNestedDataSource<TreeNode>();
   @Input() dataResults:TreeNode[]=[];
    loading:boolean=true;
 
@@ -67,10 +58,13 @@ export class TreeComponent {
   }
   hasChild =(_:number,node:TreeNode)=>!!node.children && node.children.length>0;
   loadData(node: TreeNode) {
-
-    this.dataResults.push({ name: node.name, status: node.status });
-    console.log('dataResults:', this.dataResults);
-    this.dataResults.length > 0 ? (this.loading = false) : (this.loading = true);
+    this.fileUploadService.downloadFile(node.name).subscribe((fileData) => {
+    // Handle the file data as needed, for example, open it in a new window
+    const blob = new Blob([fileData], { type: 'application/octet-stream' });
+    const url = window.URL.createObjectURL(blob);
+    window.open(url);
+  });
+    this.loading = false;
 
   }
 
@@ -103,6 +97,85 @@ export class TreeComponent {
       }
     );
   }
+  // getFolderData() {
+  //   this.fileUploadService.getFolder().subscribe(
+  //     (response) => {
+  //       console.log('Folder data retrieved successfully:', response);
+  //       // Assuming the response is an array of files from the server
+  //       this.dataSource.data = response.map((file) => ({ name: file, status: true }));
+  //     },
+  //     (error) => {
+  //       console.error('Error retrieving folder data:', error);
+  //     }
+  //   );
+  // }
+
+  IterateFolderToTree() {
+  let index=0
+    this.fileUploadService.getFolder().pipe(
+      map((folder: string | string[]) => {
+        if (Array.isArray(folder)) {
+          console.log('Files in folder:', folder);
+
+          // Reset the data source
+          this.dataSource.data = [];
+
+          // Organize files into a tree structure
+          // Organize files into a tree structure
+          folder.forEach(filePath => {
+            const pathSegments: string[] = filePath.split('/');
+            let currentNode: TreeNode | undefined;
+
+            pathSegments.forEach((segment, index) => {
+              if (index === 0) {
+                // Handle the root node separately
+                currentNode = fileData.find(node => node.name === segment);
+
+                if (!currentNode) {
+                  // If root node doesn't exist, create it
+                  currentNode = { name: segment, status: true, children: [] };
+                  fileData.push(currentNode);
+                }
+              } else {
+                // For subsequent segments, check if the node exists
+                if (currentNode) {
+                  // Find or create the node for the current segment
+                  let nextNode = currentNode.children?.find(node => node.name === segment);
+
+                  if (!nextNode) {
+                    // If the node doesn't exist, create it
+                    nextNode = { name: segment, status: true, children: [] };
+                    currentNode.children = currentNode.children || [];
+                    currentNode.children.push(nextNode);
+                  }
+
+                  // Update the currentNode to the found or created node
+                  currentNode = nextNode;
+                } else {
+                  console.error('Error: currentNode is undefined.');
+                }
+              }
+            });
+          });
+
+// Now fileData contains the organized tree structure
+          this.dataSource.data = fileData;
+
+
+          this.cdr.detectChanges();
+        } else {
+          console.error('Error: getFolder did not return an array of strings');
+        }
+      })
+    ).subscribe(
+      () => {},
+      error => {
+        console.error('Error retrieving folder data:', error);
+      }
+    );
+  }
+
+
 
   uploadFolder() {
     const folder = this.selectedFolder; // Use the selectedFolder variable

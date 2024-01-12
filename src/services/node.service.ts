@@ -29,5 +29,8 @@ export class NodeService {
   getFolder(): Observable<string> {
     return this.http.get<string>(this.apiUrl + 'getFolder');
   }
+  downloadFile(fileName: string): Observable<Blob> {
+    return this.http.get(`${this.apiUrl}/file/${fileName}`, { responseType: 'blob' });
+  }
 
 }
