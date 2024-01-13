@@ -33,11 +33,14 @@
   </div>
   <div class="" style="">
     <mat-spinner *ngIf="loading" style="color: #8c97bd"></mat-spinner>
-    <mat-card *ngFor="let res of dataResults ;let i=index">
-      <mat-card-title class="p-2 px-2" style=""> {{res.name}}</mat-card-title>
-      <mat-card-subtitle>{{ getStatus(res.status) }}</mat-card-subtitle>
-      <mat-icon (click)="deleteFile(i)" style="color: #151515">delete</mat-icon>
-    </mat-card>
+
+    <div *ngIf="!loading">
+      <mat-card>
+        <mat-card-title class="p-2 px-2" style="width: 200px">{{ fileContentVariable }}</mat-card-title>
+        <mat-icon style="color: #151515">delete</mat-icon>
+      </mat-card>
+    </div>
+
 
   </div>
 </div>

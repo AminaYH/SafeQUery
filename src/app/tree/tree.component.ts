@@ -51,6 +51,7 @@ export class TreeComponent {
   treeControl =new NestedTreeControl<TreeNode>(node =>node.children);
   public dataSource =new MatTreeNestedDataSource<TreeNode>();
   @Input() dataResults:TreeNode[]=[];
+  @Input() fileContentVariable!:String;
    loading:boolean=true;
 
   constructor(private cdr: ChangeDetectorRef,private fileUploadService: NodeService,private http: HttpClient) {
@@ -58,13 +59,25 @@ export class TreeComponent {
   }
   hasChild =(_:number,node:TreeNode)=>!!node.children && node.children.length>0;
   loadData(node: TreeNode) {
-    this.fileUploadService.downloadFile(node.name).subscribe((fileData) => {
-    // Handle the file data as needed, for example, open it in a new window
-    const blob = new Blob([fileData], { type: 'application/octet-stream' });
-    const url = window.URL.createObjectURL(blob);
-    window.open(url);
-  });
-    this.loading = false;
+    let boolean = true;
+    console.log('Content as string:');
+    this.fileUploadService.downloadFile(node.name).subscribe(
+      response => {
+        console.log('  string:', boolean);
+          const blob = response.body;
+          const reader = new FileReader();
+          reader.onload = () => {
+            const contentAsString = reader.result as string;
+            console.log('Content as string:', contentAsString);
+            //set content
+             this.fileContentVariable = contentAsString;
+             this.loading=false;
+          };
+          reader.readAsText(blob, 'UTF-8');
+        }
+
+    );
+
 
   }
 

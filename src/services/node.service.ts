@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {TreeNode} from "../app/interfaces/node";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import { HttpClientModule } from '@angular/common/http';
-import {Observable} from "rxjs";
+import {catchError, Observable, throwError} from "rxjs";
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +11,7 @@ export class NodeService {
 
 
   private apiUrl = 'http://localhost:8080/api/'; // Update with your Spring Boot backend URL
+  private baseUrl = 'http://localhost:8080/api/download';
 
   constructor(private http: HttpClient) {}
 
@@ -29,8 +30,13 @@ export class NodeService {
   getFolder(): Observable<string> {
     return this.http.get<string>(this.apiUrl + 'getFolder');
   }
-  downloadFile(fileName: string): Observable<Blob> {
-    return this.http.get(`${this.apiUrl}/file/${fileName}`, { responseType: 'blob' });
+
+  // In your client-side TypeScript code (node.service.ts)
+  downloadFile(fileName: string): Observable<any> {
+    const url = `${this.baseUrl}/${fileName}`;
+    return this.http.get(url, { observe: 'response', responseType: 'blob' });
   }
+
+
 
 }
