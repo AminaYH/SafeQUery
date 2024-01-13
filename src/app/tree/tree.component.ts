@@ -7,10 +7,15 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatCardModule} from "@angular/material/card";
 import { HttpClientModule,HttpClient } from '@angular/common/http';
+// import { HighlightModule, HIGHLIGHT_OPTIONS,HighlightOptions } from 'ngx-highlightjs';
+// import { HighlightJS } from 'ngx-highlightjs';
+import { HighlightJsModule } from 'ngx-highlight-js';
+import { HighlightJsDirective } from 'ngx-highlight-js';
 
 import {TreeNode}from "../interfaces/node";
 import {NodeService} from "../../services/node.service";
 import {map} from "rxjs";
+import { HighlightResult } from 'ngx-highlightjs';
 
 const fileData: TreeNode[] = [
 ];
@@ -41,9 +46,10 @@ const imageFileExtensions = [
     MatIconModule,
     MatProgressSpinnerModule,
     MatCardModule,
-    NgIf,
+    NgIf,HighlightJsDirective
   ],
-  providers:[HttpClientModule,NodeService],
+  providers:[HttpClientModule,NodeService,
+  ],
   templateUrl: './tree.component.html',
   styleUrl: './tree.component.css'
 })
@@ -51,13 +57,14 @@ export class TreeComponent {
   treeControl =new NestedTreeControl<TreeNode>(node =>node.children);
   public dataSource =new MatTreeNestedDataSource<TreeNode>();
   @Input() dataResults:TreeNode[]=[];
-  @Input() fileContentVariable!:String;
+  @Input() fileContentVariable!: string; // Change String to string
    loading:boolean=true;
 
   constructor(private cdr: ChangeDetectorRef,private fileUploadService: NodeService,private http: HttpClient) {
     this.dataSource.data=fileData;
   }
   hasChild =(_:number,node:TreeNode)=>!!node.children && node.children.length>0;
+
   loadData(node: TreeNode) {
     let boolean = true;
     console.log('Content as string:');
@@ -70,8 +77,11 @@ export class TreeComponent {
             const contentAsString = reader.result as string;
             console.log('Content as string:', contentAsString);
             //set content
+
              this.fileContentVariable = contentAsString;
-             this.loading=false;
+
+            this.loading=false;
+
           };
           reader.readAsText(blob, 'UTF-8');
         }
@@ -80,6 +90,25 @@ export class TreeComponent {
 
 
   }
+  // private highlightCode(): void {
+  //   this.highlightService.highlightAuto(this.fileContentVariable, []).subscribe(
+  //     result => {
+  //       if (result.value != null) {
+  //         this.fileContentVariable = result.value;
+  //       }
+  //       const detectedLanguage = result.language;
+  //       console.log('Detected Language:', detectedLanguage);
+  //     },
+  //     error => {
+  //       console.error('Error highlighting code:', error);
+  //     }
+  //   );
+  // }
+
+
+
+
+
 
   getStatus(status:boolean){
     if(status){

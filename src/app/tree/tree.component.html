@@ -1,5 +1,5 @@
-<div class="d-flex " style="background-color: #1f1f1f;width: 100%;transform: translateX(-39.5%)">
-  <div class="container flex-row justify-content-start ">
+<div class="d-flex gap-2  " style="background-color: #1f1f1f;width: 100%;">
+  <div class="container m-0  p-6  ">
 
     <mat-tree [dataSource]="dataSource" [treeControl]="treeControl"  class="tree">
 
@@ -31,17 +31,26 @@
     <button (click)="IterateFolderToTree()">Upload folder to tree</button>
 
   </div>
-  <div class="" style="">
+  <div class="px-5 mt-4" style="width: 50%">
     <mat-spinner *ngIf="loading" style="color: #8c97bd"></mat-spinner>
 
+    <!-- your.component.html -->
     <div *ngIf="!loading">
       <mat-card>
-        <mat-card-title class="p-2 px-2" style="width: 200px">{{ fileContentVariable }}</mat-card-title>
-        <mat-icon style="color: #151515">delete</mat-icon>
+
+        <div  highlight-js  [innerText]="fileContentVariable" [ngClass]="'html'" ></div>
+
       </mat-card>
     </div>
+
+
+
+  </div >
+  <div  *ngIf="!loading" class="p-3 me-0 ms-5" style="width: 30% ;background-color: #151515">
 
 
   </div>
 </div>
 
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/atom-one-dark.min.css" />
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/highlight.min.js"></script>
