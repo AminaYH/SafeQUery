@@ -1,20 +1,20 @@
 <div class="d-flex gap-2  " style="background-color: #1f1f1f;width: 100%;">
   <div class="container m-0  p-6  ">
 
-    <mat-tree [dataSource]="dataSource" [treeControl]="treeControl"  class="tree">
+    <mat-tree [dataSource]="dataSource" [treeControl]="treeControl"  class="tree" style="background-color: transparent">
 
       <mat-tree-node *matTreeNodeDef="let node " matTreeNodeToggle class="nodeClick" (click)="loadData(node)">
-        <mat-icon> insert_drive_file</mat-icon>
-        <span>{{node.name}}</span>
+        <mat-icon  style="color: #8c97bd"> insert_drive_file</mat-icon>
+        <span style="color: #8c97bd ;font-size: 17px">{{node.name}}</span>
       </mat-tree-node>
       <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild" >
         <div class="nat-tree-node">
           <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle' + node.name">
-            <mat-icon class="mat-icon-rtl-mirror">
+            <mat-icon class="mat-icon-rtl-mirror" style="color: #8c97bd">
               {{treeControl.isExpanded(node)?'expand_more':'folder'}}
             </mat-icon>
           </button>
-          <span >{{node.name}}</span>
+          <span style="color: #8c97bd ;font-size: 20px" >{{node.name}}</span>
         </div>
         <div [class.tree-invisible]="!treeControl.isExpanded(node)" role="group">
           <ng-container matTreeNodeOutlet >
@@ -22,32 +22,46 @@
         </div>
       </mat-nested-tree-node>
     </mat-tree>
-    <ul id="listing" style="color: #8c97bd"></ul>
-    <form  action="http://localhost:8080/api/upload" method="POST" (change)="onFolderChange($event)"   enctype="multipart/form-data">
-      <input type="file" name="file" multiple webkitdirectory/>
-      <button (click)="getFolderData()">Upload Folder</button>
+    <!--    <ul id="listing" style="color: #8c97bd"></ul>-->
+    <div>
+      <form  action="" method="POST" (change)="onFolderChange($event)"  class="mt-5" enctype="multipart/form-data">
+        <input type="file" name="file" multiple webkitdirectory/>
+<!--
+        <button (click)="getFolderData()">Upload Folder</button>
+-->
 
-    </form>
-    <button (click)="IterateFolderToTree()">Upload folder to tree</button>
+      </form>
+
+      <button type="button" class="btn mt-4 " style="background-color: rgb(190, 213, 255);" (click)="IterateFolderToTree()">Upload folder to tree</button>
+
+      <div class="mt-5 d-flex flex-column">
+        <label class="form-check-label mt-5" style="color: #8c97bd">
+          <input type="radio" name="checkboxOption" class="form-check-input" > Java
+        </label>
+        <label class="form-check-label mt-3" style="color: #8c97bd">
+          <input type="radio" name="checkboxOption" class="form-check-input" > Php
+        </label>
+
+        <!-- Add more checkboxes as needed -->
+      </div>
+    </div>
+  </div>
+
+  <div class="px-5 mt-4 ms-5"  style="width:50% ;background-color: rgb(190,213,255);border-radius: 1%;">
+    <mat-spinner *ngIf="loading" style="color: #2350ea;margin-left: 40% ;transform: translateY(300%)" class=""></mat-spinner>
+
+    <div *ngIf="!loading" style="border: none">
+      <div class="mt-4" style="background-color: rgb(190,213,255) ">
+        <div  highlight-js  [innerText]="fileContentVariable" [ngClass]="'html'" ></div>
+      </div>
+    </div>
+  </div >
+  <div  *ngIf="!loading" class="p-2 ms-4 mt-4" style="width: 5% ;background-color: transparent">
+    <button (click)="CheckSqlInjection()" style="background-color: #2350ea"> check</button>
 
   </div>
-  <div class="px-5 mt-4" style="width: 50%">
-    <mat-spinner *ngIf="loading" style="color: #8c97bd"></mat-spinner>
-
-    <!-- your.component.html -->
-    <div *ngIf="!loading">
-      <mat-card>
-
-        <div  highlight-js  [innerText]="fileContentVariable" [ngClass]="'html'" ></div>
-
-      </mat-card>
-    </div>
-
-
-
-  </div >
-  <div  *ngIf="!loading" class="p-3 me-0 ms-5" style="width: 30% ;background-color: #151515">
-
+  <div  class="p-3 me-0 ms-5" style="width: 30% ;background-color: #151515">
+    <div  *ngIf="looadinVun " style="color: aliceblue ;width: 70%" > {{result}} </div>
 
   </div>
 </div>

@@ -16,6 +16,7 @@ import {TreeNode}from "../interfaces/node";
 import {NodeService} from "../../services/node.service";
 import {map} from "rxjs";
 import { HighlightResult } from 'ngx-highlightjs';
+import {VulnerabilitiesService} from "../../services/vulnerabilities.service";
 
 const fileData: TreeNode[] = [
 ];
@@ -48,7 +49,7 @@ const imageFileExtensions = [
     MatCardModule,
     NgIf,HighlightJsDirective
   ],
-  providers:[HttpClientModule,NodeService,
+  providers:[HttpClientModule,NodeService,VulnerabilitiesService
   ],
   templateUrl: './tree.component.html',
   styleUrl: './tree.component.css'
@@ -58,9 +59,10 @@ export class TreeComponent {
   public dataSource =new MatTreeNestedDataSource<TreeNode>();
   @Input() dataResults:TreeNode[]=[];
   @Input() fileContentVariable!: string; // Change String to string
+  @Input() result!:string;
    loading:boolean=true;
-
-  constructor(private cdr: ChangeDetectorRef,private fileUploadService: NodeService,private http: HttpClient) {
+    looadinVun:boolean=false;
+  constructor(private cdr: ChangeDetectorRef,private fileUploadService: NodeService,private http: HttpClient,private VulnerabilitiesService:VulnerabilitiesService) {
     this.dataSource.data=fileData;
   }
   hasChild =(_:number,node:TreeNode)=>!!node.children && node.children.length>0;
@@ -153,6 +155,7 @@ export class TreeComponent {
   // }
 
   IterateFolderToTree() {
+    this.getFolderData();
   let index=0
     this.fileUploadService.getFolder().pipe(
       map((folder: string | string[]) => {
@@ -200,7 +203,7 @@ export class TreeComponent {
             });
           });
 
-// Now fileData contains the organized tree structure
+//  the organized tree structure
           this.dataSource.data = fileData;
 
 
@@ -217,7 +220,20 @@ export class TreeComponent {
     );
   }
 
+//check for sql-injection
+  CheckSqlInjection(){
+    this.VulnerabilitiesService.checkForSQLInjection().subscribe(
+      response => {
+        console.log('Upload successful', response);
+        this.result= response;
+        this.looadinVun=true;
 
+      },
+      error => {
+        console.error('Error check', error);
+      }
+    )
+  }
 
   uploadFolder() {
     const folder = this.selectedFolder; // Use the selectedFolder variable

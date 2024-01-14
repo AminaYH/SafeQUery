@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import {Router, RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
+import {NgOptimizedImage} from "@angular/common";
 
 @Component({
   selector: 'app-homepage',
   standalone: true,
-  imports: [RouterOutlet, RouterLinkActive, RouterLink],
+  imports: [RouterOutlet, RouterLinkActive, RouterLink, NgOptimizedImage],
   templateUrl: './homepage.component.html',
   styleUrl: './homepage.component.css'
 })

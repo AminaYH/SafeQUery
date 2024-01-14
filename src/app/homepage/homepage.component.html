@@ -11,7 +11,8 @@
           <a class="nav-link active" aria-current="page" href="#" style="color: #8c97bd;">Home</a>
         </li>
         <li class="nav-item mx-3">
-          <a class="nav-link" href="#" style="color: #8c97bd;">Link</a>
+          <a class="nav-link" href="#" style="color: #8c97bd;">Key Features
+          </a>
         </li>
         <li class="nav-item mx-3 table-hover">
           <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #8c97bd;">
@@ -19,7 +20,7 @@
           </a>
         </li>
       </ul>
-      <ul class="navbar-nav move-to-right">
+      <ul class="navbar-nav ms-5">
         <li class="nav-item">
           <button type="button" class="btn btn-outline-secondary">
             Login
@@ -29,36 +30,56 @@
     </div>
   </div>
 </nav>
-  <div class="d-grid  text move-to-right  pt-4" style="background-color: #1f1f1f; display: flex; justify-content: center; align-items: center;width:65%">
-    <div class="" >
-      <h2 class="text-white-50">SafeQuery: Your Shield Against <br><span class="d-flex justify-content-center p-2"> Vulnerabilities</span></h2>
-      <div class="d-flex justify-content-center p-3 ">
-      <button type="button" class="btn btn-outline-secondary "  (click)="goToOtherPage()" >
-        Start for Free
-      </button>
-
-
+  <div class="d-flex flex-row justify-content-between gap-4 move-to-right text pt-5" style="background-color: #1f1f1f;  width: 80%">
+    <div class="  " style="width: 80%">
+      <h1 class=" ms-5" style="color: #53a8ee">SafeQuery: Your Shield Against <br><span class=" ms-5 p-2"> Vulnerabilities</span></h1>
+      <div class="d-flex flex-column justify-content-center p-3">
+        <div class="p-2">
+          <p class="text-white">The Website Vulnerability Scanner is a highly-accurate vulnerability scanning solution.
+            <br>Quickly detect SQL injection</p>
+        </div>
+        <button type="button" style="  border-color: #8c97bd" class="btn btn-outline-secondary w-25 p-2   mt-4" (click)="goToOtherPage()">
+          Start for Free
+        </button>
       </div>
     </div>
-    <div>
-      <h2 class="text-white-50"> Little Demo</h2>
-      <video width="640" height="360 " controls>
+    <div class="p-2 ">
+      <h2 class="text-white-50 "> Little Demo</h2>
+      <video width="640" height="360" controls>
         <source src="assets/sample-video.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
     </div>
-
   </div>
- <div class="move-to-right" style="color: #8c97bd;">
-   <div class="container">
+
+
+
+
+
+  <div class="move-to-right me-5 " style="color: #8c97bd;">
+   <div class="">
      <div class="d-flex flex-column">
 
-       <div class="col-md-12">
-         <h3 class="text-center">Key Features</h3>
+       <div class="">
+         <h3 class="mt-5 mb-4" style="margin-left: 35%">Key Features</h3>
+         <div class="d-flex flex-row">
+         <div class="p2 ">
+           <img  class="mt-2" ngSrc="assets/image/gradient-dragon.svg" alt="" height="199" width="198"/>
+           <h4  class="mt-2" >A powerful Website Scanner for all web applications</h4>
+           <p  class="mt-2" >Designed to be both powerful and easy to use, the scanner accommodates the needs of both security teams and<br> application security professionals.</p>
+         </div>
+           <div class="p2 mx-5 d-flex flex-column">
+             <img class="mt-2" ngSrc="assets/image/gradient-radar.svg" alt="" height="199" width="198"/>
+             <h4 class="p-2">ABuilt by penetration testers</h4>
+             <p  class="mt-2"> The team behind the Website Vulnerability Scanner has a proven hands-on experience in penetration testing .</p>
+           </div>
+             <div class="p2 mx-5" style="">
+               <img  class="mt-2" ngSrc="assets/image/gradient-target.svg" alt="" height="199" width="198"/>
 
-           <p class="p-2"> Code Scanning: SafeQuery scans your entire c</p>
-           <p class="p-2">Automated Analysis: ving you time and resources.</p>
-
+               <h4  class="mt-2"> Scan JavaScript-heavy websites</h4>
+               <p  class="mt-2" >The Website Vulnerability Scanner uses a powerful browser-based crawler to scan code .</p>
+             </div>
+         </div>
        </div>
 
      </div>
