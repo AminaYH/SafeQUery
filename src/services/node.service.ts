@@ -15,18 +15,22 @@ export class NodeService {
 
   constructor(private http: HttpClient) {}
 
-  uploadFile(folder: FileList):Observable<string> {
+  uploadFolder(folder: FileList): Observable<string> {
     const formData = new FormData();
 
+    // Add each file along with its relative path within the folder
     Array.from(folder).forEach(file => {
-      formData.append('files', file, file.name);
+      const relativePath = file.webkitRelativePath || '';
+      console.log('relative path is ',relativePath)
+      formData.append('files', file, relativePath);
     });
-
 
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'multipart/form-data');
 
-    return this.http.post<string>(this.apiUrl + 'upload', formData, { headers });  }
+    return this.http.post<string>(this.apiUrl + 'upload', formData, { headers });
+  }
+
   getFolder(): Observable<string> {
     return this.http.get<string>(this.apiUrl + 'getFolder');
   }

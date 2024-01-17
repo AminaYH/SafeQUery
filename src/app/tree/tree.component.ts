@@ -6,7 +6,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatCardModule} from "@angular/material/card";
-import { HttpClientModule,HttpClient } from '@angular/common/http';
+import {HttpClientModule, HttpClient, HttpErrorResponse} from '@angular/common/http';
 // import { HighlightModule, HIGHLIGHT_OPTIONS,HighlightOptions } from 'ngx-highlightjs';
 // import { HighlightJS } from 'ngx-highlightjs';
 import { HighlightJsModule } from 'ngx-highlight-js';
@@ -131,28 +131,26 @@ export class TreeComponent {
     this.selectedFolder = event.target.files;
   }
 
+
   getFolderData() {
     this.fileUploadService.getFolder().subscribe(
-      response => {
+      (response) => {
         console.log('Folder data retrieved successfully:', response);
+        // Faites ce que vous devez faire avec les données du dossier
       },
-      error => {
+      (error) => {
         console.error('Error retrieving folder data:', error);
+
+        if (error instanceof Error) {
+          console.error('Client-side error:', error.message);
+        } else if (error instanceof HttpErrorResponse) {
+          console.error('Server-side error status:', error.status);
+          console.error('Server-side error message:', error.message);
+        }
       }
     );
   }
-  // getFolderData() {
-  //   this.fileUploadService.getFolder().subscribe(
-  //     (response) => {
-  //       console.log('Folder data retrieved successfully:', response);
-  //       // Assuming the response is an array of files from the server
-  //       this.dataSource.data = response.map((file) => ({ name: file, status: true }));
-  //     },
-  //     (error) => {
-  //       console.error('Error retrieving folder data:', error);
-  //     }
-  //   );
-  // }
+
 
   IterateFolderToTree() {
     this.getFolderData();
@@ -239,7 +237,7 @@ export class TreeComponent {
     const folder = this.selectedFolder; // Use the selectedFolder variable
     console.log('Files to upload:', folder);
 
-    this.fileUploadService.uploadFile(folder).subscribe(
+    this.fileUploadService.uploadFolder(folder).subscribe(
 
       response => {
         console.log('Upload successful', response);

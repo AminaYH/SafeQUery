@@ -2,5 +2,20 @@
   margin-left: 10%;
 }
 .move-items-to-right{
-  margin-left: 8%;
+  margin-left: 40%;
+}
+/* Appliquer une bordure en dessous des champs de saisie du formulaire */
+#contact-form input,
+#contact-form textarea {
+  background-color: transparent;
+  border: none; /* Supprimer les bordures existantes */
+  border-bottom: 1px solid #8c97bd; /* Ajouter une bordure en dessous */
+  color: #6986ea; /* Couleur du texte pour les champs */
+}
+
+/* Style supplémentaire pour le bouton du formulaire */
+#contact-form button {
+  background-color: #8c97bd; /* Couleur de fond du bouton */
+  color: #fff; /* Couleur du texte du bouton */
+  border: none; /* Supprime la bordure du bouton */
 }

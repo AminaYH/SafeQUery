@@ -1,5 +1,6 @@
-<div class="d-flex gap-2  " style="background-color: #1f1f1f;width: 100%;">
-  <div class="container m-0  p-6  ">
+<div class="d-flex gap-4 " style="background-color: #1f1f1f;width: 100%;">
+
+  <div class="container m-0  p-6  " style=" background-color: transparent;backdrop-filter: blur(15px); box-shadow: 0 0 10px 5px rgba(255,255,255,0.03);">
 
     <mat-tree [dataSource]="dataSource" [treeControl]="treeControl"  class="tree" style="background-color: transparent">
 
@@ -24,11 +25,13 @@
     </mat-tree>
     <!--    <ul id="listing" style="color: #8c97bd"></ul>-->
     <div>
-      <form  action="" method="POST" (change)="onFolderChange($event)"  class="mt-5" enctype="multipart/form-data">
+      <form action="http://localhost:8080/api/upload" method="POST" (change)="onFolderChange($event)" class="mt-5" enctype="multipart/form-data">
         <input type="file" name="file" multiple webkitdirectory/>
-<!--
-        <button (click)="getFolderData()">Upload Folder</button>
--->
+
+
+<!--        <button   (click)="getFolderData()">Upload Folder</button>-->
+
+
 
       </form>
 
@@ -47,23 +50,27 @@
     </div>
   </div>
 
-  <div class="px-5 mt-4 ms-5"  style="width:50% ;background-color: rgb(190,213,255);border-radius: 1%;">
-    <mat-spinner *ngIf="loading" style="color: #2350ea;margin-left: 40% ;transform: translateY(300%)" class=""></mat-spinner>
+  <div class="px-5 mt-4 ms-5" style="width: 50%; background-color: rgb(190, 213, 255); border-radius: 1%; border: 3px solid #a823ea;">
+    <mat-spinner *ngIf="loading" style="color: #2350ea; margin-left: 40%; transform: translateY(300%)" class=""></mat-spinner>
 
     <div *ngIf="!loading" style="border: none">
-      <div class="mt-4" style="background-color: rgb(190,213,255) ">
-        <div  highlight-js  [innerText]="fileContentVariable" [ngClass]="'html'" ></div>
+      <div class="mt-4" style="">
+        <div highlight-js [innerText]="fileContentVariable" [ngClass]="'html'"></div>
       </div>
     </div>
-  </div >
-  <div  *ngIf="!loading" class="p-2 ms-4 mt-4" style="width: 5% ;background-color: transparent">
-    <button (click)="CheckSqlInjection()" style="background-color: #2350ea"> check</button>
-
   </div>
-  <div  class="p-3 me-0 ms-5" style="width: 30% ;background-color: #151515">
-    <div  *ngIf="looadinVun " style="color: aliceblue ;width: 70%" > {{result}} </div>
 
+
+  <div class="p-3 me-0 ms-5" style="width: 30%; background-color: #151515; border: 2px solid; border-radius: 20px">
+    <h2 style="color: #8c97bd; text-align: center" class="border-bottom border-white">Detection SQL Injection Scanner Result</h2>
+    <div  *ngIf="!loading" class="p-2 ms-4 mt-4" style="width: 5% ;background-color: transparent">
+      <button (click)="CheckSqlInjection()" style="background-color: #fefeff;border-radius: 10px"> check</button>
+
+    </div>
+    <div *ngIf="looadinVun" style="color: aliceblue; width: 70%; border: 2px solid; border-radius: 20px"> {{result}} </div>
   </div>
+
+
 </div>
 
 <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/atom-one-dark.min.css" />

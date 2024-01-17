@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {CommonModule} from "@angular/common";
+import {CommonModule, NgOptimizedImage} from "@angular/common";
 import {RouterOutlet} from "@angular/router";
 import {
   NgbInputDatepicker,
@@ -15,7 +15,7 @@ import {TooltipModule} from "ngx-bootstrap/tooltip";
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, NgbNav, NgbNavItem, NgbNavOutlet, NgbNavLinkBase, NgbNavContent, NgbInputDatepicker, TooltipModule],
+    imports: [CommonModule, RouterOutlet, NgbNav, NgbNavItem, NgbNavOutlet, NgbNavLinkBase, NgbNavContent, NgbInputDatepicker, TooltipModule, NgOptimizedImage],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })

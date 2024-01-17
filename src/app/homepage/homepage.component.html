@@ -1,11 +1,13 @@
-<div style="background-color: #1f1f1f" class="overflow-hidden container-fluid">
-<nav class="navbar navbar-expand " style="padding: inherit;background-color: #151515">
-  <div class="container-fluid move-to-right" style="background-color: #151515">
+<div style="background-color: #1f1f1f" class="overflow-hidden container-fluid ">
+  <nav class="navbar navbar-expand fixed-top" style=" background-color: transparent;backdrop-filter: blur(15px); box-shadow: 0 0 10px 5px rgba(255,255,255,0.36);">
+  <div class="container-fluid " style="background-color: transparent">
+    <img  class="mt-2 " data-animation="true" ngSrc="assets/image/gradient-dragon.svg" alt="" height="90" width="90" style="margin-left: 0.2%"/>
+
     <a class="navbar-brand p-2" href="#">
       <h1 style="color: #012694">SafeQuery</h1>
     </a>
 
-    <div class="collapse navbar-collapse move-items-to-right" id="navbarNav">
+    <div class="collapse navbar-collapse move-items-to-right " id="navbarNav">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item mx-3">
           <a class="nav-link active" aria-current="page" href="#" style="color: #8c97bd;">Home</a>
@@ -16,12 +18,12 @@
         </li>
         <li class="nav-item mx-3 table-hover">
           <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #8c97bd;">
-            Dropdown
+            Contact us
           </a>
         </li>
       </ul>
-      <ul class="navbar-nav ms-5">
-        <li class="nav-item">
+      <ul class="navbar-nav  ms-5">
+        <li class="nav-item"  >
           <button type="button" class="btn btn-outline-secondary">
             Login
           </button>
@@ -30,7 +32,7 @@
     </div>
   </div>
 </nav>
-  <div class="d-flex flex-row justify-content-between gap-4 move-to-right text pt-5" style="background-color: #1f1f1f;  width: 80%">
+  <div class="d-flex flex-row justify-content-between gap-4 move-to-right text " style="background-color: #1f1f1f;  width: 80%;margin-top: 8%">
     <div class="  " style="width: 80%">
       <h1 class=" ms-5" style="color: #53a8ee">SafeQuery: Your Shield Against <br><span class=" ms-5 p-2"> Vulnerabilities</span></h1>
       <div class="d-flex flex-column justify-content-center p-3">
@@ -61,20 +63,20 @@
      <div class="d-flex flex-column">
 
        <div class="">
-         <h3 class="mt-5 mb-4" style="margin-left: 35%">Key Features</h3>
+         <h3 class="mt-5 mb-5" style="margin-left: 40%">Key Features</h3>
          <div class="d-flex flex-row">
          <div class="p2 ">
-           <img  class="mt-2" ngSrc="assets/image/gradient-dragon.svg" alt="" height="199" width="198"/>
+           <img  class="mt-2 " data-animation="true" ngSrc="assets/image/gradient-dragon.svg" alt="" height="199" width="198" style="margin-left: 24%"/>
            <h4  class="mt-2" >A powerful Website Scanner for all web applications</h4>
            <p  class="mt-2" >Designed to be both powerful and easy to use, the scanner accommodates the needs of both security teams and<br> application security professionals.</p>
          </div>
            <div class="p2 mx-5 d-flex flex-column">
-             <img class="mt-2" ngSrc="assets/image/gradient-radar.svg" alt="" height="199" width="198"/>
+             <img class="mt-2" ngSrc="assets/image/gradient-radar.svg" alt="" height="199" width="198" style="margin-left: 22%"/>
              <h4 class="p-2">ABuilt by penetration testers</h4>
              <p  class="mt-2"> The team behind the Website Vulnerability Scanner has a proven hands-on experience in penetration testing .</p>
            </div>
              <div class="p2 mx-5" style="">
-               <img  class="mt-2" ngSrc="assets/image/gradient-target.svg" alt="" height="199" width="198"/>
+               <img  class="mt-2" ngSrc="assets/image/gradient-target.svg" alt="" height="199" width="198"style="margin-left: 16%"/>
 
                <h4  class="mt-2"> Scan JavaScript-heavy websites</h4>
                <p  class="mt-2" >The Website Vulnerability Scanner uses a powerful browser-based crawler to scan code .</p>
@@ -86,9 +88,140 @@
    </div>
 
 
-  <footer>
-    &copy; 2024 SafeQuery. All rights reserved.
-  </footer>
 
 </div>
+  <div class=" me-5 p-3  " style="color: #8c97bd;background-color: #252525;backdrop-filter: blur(10%)">
+    <section>
+      <div class="container py-4">
+        <div class="row">
+          <div class="col-lg-7 mx-auto d-flex justify-content-center flex-column">
+            <h3 class="text-center">Contact us</h3>
+            <form role="form" id="contact-form" method="post" autocomplete="off">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="input-group input-group-dynamic mb-4">
+                      <label class="form-label">First Name</label>
+                      <input class="form-control" aria-label="First Name..." type="text" >
+                    </div>
+                  </div>
+                  <div class="col-md-6 ps-2">
+                    <div class="input-group input-group-dynamic">
+                      <label class="form-label">Last Name</label>
+                      <input type="text" class="form-control" placeholder="" aria-label="Last Name..." >
+                    </div>
+                  </div>
+                </div>
+                <div class="mb-4">
+                  <div class="input-group input-group-dynamic">
+                    <label class="form-label">Email Address</label>
+                    <input type="email" class="form-control">
+                  </div>
+                </div>
+                <div class="input-group mb-4 input-group-static">
+                  <label>Your message</label>
+                  <textarea name="message" class="form-control" id="message" rows="4"></textarea>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-check form-switch mb-4 d-flex align-items-center">
+                      <input class="form-check-input " type="checkbox" id="flexSwitchCheckDefault" style="background-color: #6a89f1" checked="">
+                      <label class="form-check-label ms-3 mb-0" for="flexSwitchCheckDefault">I agree to the <a href="javascript:;" class="text-white-50"><u>Terms and Conditions</u></a>.</label>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <button type="submit" class="btn bg-gradient-dark w-100">Send Message</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+  </div>
+
+    <div class=" me-5 p-3 border-top border-white" style="color: #8c97bd;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5">
+          <div class="d-flex flex-column">
+            <h5>Why SafeQUery</h5>
+
+            <ul>
+              <li class="nav-item mx-3 table-hover">
+                <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #8c97bd;">
+                  About Us
+
+
+                </a>
+              </li> <li class="nav-item mx-3 table-hover">
+              <a class="nav-link" href="#"  role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #8c97bd;">
+                Freebies
+
+              </a>
+            </li><li class="nav-item mx-3 table-hover">
+              <a class="nav-link" href="#"  role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #8c97bd;">
+                Premium Tools
+              </a>
+            </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="d-flex flex-column">
+           <h5>Solutions</h5>
+            <ul>
+            <li class="nav-item mx-3 table-hover">
+              <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #8c97bd;">
+                Illustrations
+
+              </a>
+            </li> <li class="nav-item mx-3 table-hover">
+              <a class="nav-link" href="#"  role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #8c97bd;">
+                Bits & Snippets
+              </a>
+            </li><li class="nav-item mx-3 table-hover">
+              <a class="nav-link" href="#"  role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #8c97bd;">
+                Affiliate Program
+
+              </a>
+            </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="d-flex flex-column">
+            <h5>Resources</h5>
+            <ul>
+              <li class="nav-item mx-3 table-hover">
+                <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #8c97bd;">
+                  Contact Us
+
+                </a>
+              </li> <li class="nav-item mx-3 table-hover">
+              <a class="nav-link" href="#"  role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #8c97bd;">
+                Knowledge Center
+
+              </a>
+            </li><li class="nav-item mx-3 table-hover">
+              <a class="nav-link" href="#"  role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #8c97bd;">
+                Custom Development
+
+              </a>
+            </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col">
+          &copy; 2024 SafeQuery. All rights reserved.
+        </div>
+      </div>
+    </div>
+
+  </div>
 </div>
