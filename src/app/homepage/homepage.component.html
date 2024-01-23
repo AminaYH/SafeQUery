@@ -1,46 +1,15 @@
-<div style="background-color: #1f1f1f" class="overflow-hidden container-fluid ">
-  <nav class="navbar navbar-expand fixed-top" style=" background-color: transparent;backdrop-filter: blur(15px); box-shadow: 0 0 10px 5px rgba(255,255,255,0.36);">
-  <div class="container-fluid " style="background-color: transparent">
-    <img  class="mt-2 " data-animation="true" ngSrc="assets/image/gradient-dragon.svg" alt="" height="90" width="90" style="margin-left: 0.2%"/>
+<div style="background-color: #f8f8f8" class="overflow-hidden container-fluid ">
 
-    <a class="navbar-brand p-2" href="#">
-      <h1 style="color: #012694">SafeQuery</h1>
-    </a>
-
-    <div class="collapse navbar-collapse move-items-to-right " id="navbarNav">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item mx-3">
-          <a class="nav-link active" aria-current="page" href="#" style="color: #8c97bd;">Home</a>
-        </li>
-        <li class="nav-item mx-3">
-          <a class="nav-link" href="#" style="color: #8c97bd;">Key Features
-          </a>
-        </li>
-        <li class="nav-item mx-3 table-hover">
-          <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #8c97bd;">
-            Contact us
-          </a>
-        </li>
-      </ul>
-      <ul class="navbar-nav  ms-5">
-        <li class="nav-item"  >
-          <button type="button" class="btn btn-outline-secondary">
-            Login
-          </button>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-  <div class="d-flex flex-row justify-content-between gap-4 move-to-right text " style="background-color: #1f1f1f;  width: 80%;margin-top: 8%">
+<app-navbar></app-navbar>
+  <div class="d-flex flex-row justify-content-between gap-4 move-to-right text " id="home" style="  width: 80%;margin-top: 8%">
     <div class="  " style="width: 80%">
-      <h1 class=" ms-5" style="color: #53a8ee">SafeQuery: Your Shield Against <br><span class=" ms-5 p-2"> Vulnerabilities</span></h1>
+      <h1 class=" ms-5" style="color: #1b36e7">SafeQuery: Your Shield Against <br><span class=" ms-5 p-2"> Vulnerabilities</span></h1>
       <div class="d-flex flex-column justify-content-center p-3">
         <div class="p-2">
-          <p class="text-white">The Website Vulnerability Scanner is a highly-accurate vulnerability scanning solution.
+          <p class="text-black">The Website Vulnerability Scanner is a highly-accurate vulnerability scanning solution.
             <br>Quickly detect SQL injection</p>
         </div>
-        <button type="button" style="  border-color: #8c97bd" class="btn btn-outline-secondary w-25 p-2   mt-4" (click)="goToOtherPage()">
+        <button type="button" style="margin-left: 29%; border-color: #8c97bd" class="btn btn-outline-secondary w-25 p-2   mt-4" (click)="goToOtherPage()">
           Start for Free
         </button>
       </div>
@@ -58,7 +27,7 @@
 
 
 
-  <div class="move-to-right me-5 " style="color: #8c97bd;">
+  <div class="move-to-right me-5 " id="key" style="color: #8c97bd;">
    <div class="">
      <div class="d-flex flex-column">
 
@@ -90,7 +59,7 @@
 
 
 </div>
-  <div class=" me-5 p-3  " style="color: #8c97bd;background-color: #252525;backdrop-filter: blur(10%)">
+  <div class=" me-5 p-3  " id="navbarDropdown" style=";background-color: #f6f4fa;backdrop-filter: blur(10%)">
     <section>
       <div class="container py-4">
         <div class="row">
@@ -143,26 +112,23 @@
 
   </div>
 
-    <div class=" me-5 p-3 border-top border-white" style="color: #8c97bd;">
+    <div class=" me-5 p-3 border-top border-white"  id='contact' style="color: #8c97bd;">
     <div class="container">
       <div class="row">
-        <div class="col-md-5">
-          <div class="d-flex flex-column">
-            <h5>Why SafeQUery</h5>
+        <div class="col-lg-4">
+          <div class="d-flex flex-column align-text-start">
+            <h5 >Why SafeQUery</h5>
 
-            <ul>
-              <li class="nav-item mx-3 table-hover">
-                <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #8c97bd;">
-                  About Us
-
-
-                </a>
-              </li> <li class="nav-item mx-3 table-hover">
+            <ul class="list-unstyled">
+              <li class="nav-item table-hover">
+                <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #8c97bd;">About Us</a>
+              </li>
+              <li class="nav-item  table-hover">
               <a class="nav-link" href="#"  role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #8c97bd;">
                 Freebies
 
               </a>
-            </li><li class="nav-item mx-3 table-hover">
+            </li><li class="nav-item  table-hover">
               <a class="nav-link" href="#"  role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #8c97bd;">
                 Premium Tools
               </a>
@@ -170,20 +136,20 @@
             </ul>
           </div>
         </div>
-        <div class="col-md-5">
+        <div class="col-5 ">
           <div class="d-flex flex-column">
-           <h5>Solutions</h5>
-            <ul>
-            <li class="nav-item mx-3 table-hover">
+           <h5 class="">Solutions</h5>
+            <ul class="list-unstyled">
+            <li class="nav-item  table-hover">
               <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #8c97bd;">
                 Illustrations
 
               </a>
-            </li> <li class="nav-item mx-3 table-hover">
+            </li> <li class="nav-item  table-hover">
               <a class="nav-link" href="#"  role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #8c97bd;">
                 Bits & Snippets
               </a>
-            </li><li class="nav-item mx-3 table-hover">
+            </li><li class="nav-item  table-hover">
               <a class="nav-link" href="#"  role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #8c97bd;">
                 Affiliate Program
 
@@ -192,21 +158,21 @@
             </ul>
           </div>
         </div>
-        <div class="col-md-2">
+        <div class="col-2">
           <div class="d-flex flex-column">
             <h5>Resources</h5>
-            <ul>
-              <li class="nav-item mx-3 table-hover">
+            <ul class="list-unstyled">
+              <li class="nav-item  table-hover">
                 <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #8c97bd;">
                   Contact Us
 
                 </a>
-              </li> <li class="nav-item mx-3 table-hover">
+              </li> <li class="nav-item  table-hover">
               <a class="nav-link" href="#"  role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #8c97bd;">
                 Knowledge Center
 
               </a>
-            </li><li class="nav-item mx-3 table-hover">
+            </li><li class="nav-item  table-hover">
               <a class="nav-link" href="#"  role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #8c97bd;">
                 Custom Development
 

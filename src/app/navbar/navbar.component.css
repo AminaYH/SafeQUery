@@ -1,5 +1,5 @@
 .nav-bar{
-  height: 50px;
+  height: 30px;
   width: 500cm;
   background-color: black;
   background-size: contain;
@@ -9,4 +9,16 @@
 .list{
   text-align-all: center;
 }
+.pos-nav-bar{
+  border-radius: 20px;
+  width: 80%;
+   height: 10%;
+margin-left: 10%;
+}
+.container {
+  height: 100vh;
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

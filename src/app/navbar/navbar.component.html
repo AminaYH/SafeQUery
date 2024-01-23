@@ -1,5 +1,5 @@
-
-<nav class="navbar navbar-expand " style=" background-color: transparent;backdrop-filter: blur(15px); box-shadow: 0 0 10px 5px rgba(255,255,255,0.03);">
+<div  class="gap-4 " >
+<nav class="navbar navbar-expand fixed-top pos-nav-bar mt-2" style=" background-color: transparent;backdrop-filter: blur(15px); box-shadow: 0 0 10px 5px rgba(255,255,255,0.36);">
   <div class="container-fluid " style="background-color: transparent">
     <img  class="mt-2 " data-animation="true" ngSrc="assets/image/gradient-dragon.svg" alt="" height="90" width="90" style="margin-left: 0.2%"/>
 
@@ -7,15 +7,24 @@
       <h1 style="color: #012694">SafeQuery</h1>
     </a>
 
-    <div class="collapse navbar-collapse move-items-to-right " id="navbarNav">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item mx-3">
-          <a class="nav-link active" aria-current="page" href="#" style="color: #8c97bd;">Home</a>
+    <div class="collapse navbar-collapse move-items-to-right   d-flex justify-content-between " id="navbarNav">
+      <ul class="navbar-nav mr-auto col-3  d-flex justify-content-between  ">
+        <li class="nav-item mx-4  ">
+          <a class="nav-link active" aria-current="page" href="#home" style="color: #8c97bd;">Home</a>
+        </li>
+        <li class="nav-item mx-4 ">
+          <a class="nav-link" id='key ' href="#key" style="color: #8c97bd;"> Features
+          </a>
+        </li>
+        <li class="nav-item mx-4 table-hover ">
+          <a class="nav-link" href="#contact" id="" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #8c97bd;">
+            Contact
+          </a>
         </li>
       </ul>
-      <ul class="navbar-nav  ms-5">
+      <ul class="navbar-nav  me-3 row-cols-6 ">
         <li class="nav-item"  >
-          <button type="button"  style="margin-left: 1300px" class="btn btn-outline-secondary">
+          <button type="button" class="btn btn-outline-secondary">
             Login
           </button>
         </li>
@@ -23,3 +32,4 @@
     </div>
   </div>
 </nav>
+</div>

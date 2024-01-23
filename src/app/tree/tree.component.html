@@ -25,17 +25,13 @@
     </mat-tree>
     <!--    <ul id="listing" style="color: #8c97bd"></ul>-->
     <div>
-      <form action="http://localhost:8080/api/upload" method="POST" (change)="onFolderChange($event)" class="mt-5" enctype="multipart/form-data">
-        <input type="file" name="file" multiple webkitdirectory/>
-
-
-<!--        <button   (click)="getFolderData()">Upload Folder</button>-->
-
-
-
+      <form (ngSubmit)="uploadFolder()" class="mt-5" enctype="multipart/form-data">
+        <!-- Your form fields go here -->
+        <input type="file" (change)="onFolderChange($event)" webkitdirectory multiple />
+        <button type="submit" (click)="IterateFolderToTree()" >Submit</button>
       </form>
 
-      <button type="button" class="btn mt-4 " style="background-color: rgb(190, 213, 255);" (click)="IterateFolderToTree()">Upload folder to tree</button>
+
 
       <div class="mt-5 d-flex flex-column">
         <label class="form-check-label mt-5" style="color: #8c97bd">

@@ -18,29 +18,42 @@ export class NodeService {
   uploadFolder(folder: FileList): Observable<string> {
     const formData = new FormData();
 
-    // Add each file along with its relative path within the folder
-    Array.from(folder).forEach(file => {
-      const relativePath = file.webkitRelativePath || '';
-      console.log('relative path is ',relativePath)
-      formData.append('files', file, relativePath);
-    });
+    // Check if folder is defined and iterable
+    if (folder && folder.length > 0) {
+      Array.from(folder).forEach(file => {
+        const relativePath = file.webkitRelativePath || '';
+        console.log('relative path is ', relativePath);
+        formData.append('file', file, relativePath);
+      });
+    }
 
     const headers = new HttpHeaders();
-    headers.append('Content-Type', 'multipart/form-data');
+    headers.set('Accept', 'application/json');
 
-    return this.http.post<string>(this.apiUrl + 'upload', formData, { headers });
+    return this.http.post<string>(this.apiUrl + 'upload', formData, { headers }).pipe(
+      catchError(this.handleError)
+    );
   }
+
 
   getFolder(): Observable<string> {
     return this.http.get<string>(this.apiUrl + 'getFolder');
   }
 
-  // In your client-side TypeScript code (node.service.ts)
   downloadFile(fileName: string): Observable<any> {
     const url = `${this.baseUrl}/${fileName}`;
     return this.http.get(url, { observe: 'response', responseType: 'blob' });
   }
 
 
-
+  private handleError(error: HttpErrorResponse) {
+    if (error.error instanceof ErrorEvent) {
+      console.error('An error occurred:', error.error.message);
+    } else {
+      console.error(
+        `Backend returned code ${error.status}, ` +
+        `body was: ${error.error}`);
+    }
+    return throwError('Something went wrong; please try again later.');
+  }
 }

@@ -17,6 +17,7 @@ import {NodeService} from "../../services/node.service";
 import {map} from "rxjs";
 import { HighlightResult } from 'ngx-highlightjs';
 import {VulnerabilitiesService} from "../../services/vulnerabilities.service";
+import {FormsModule} from "@angular/forms";
 
 const fileData: TreeNode[] = [
 ];
@@ -47,7 +48,7 @@ const imageFileExtensions = [
     MatIconModule,
     MatProgressSpinnerModule,
     MatCardModule,
-    NgIf,HighlightJsDirective
+    NgIf, HighlightJsDirective, FormsModule
   ],
   providers:[HttpClientModule,NodeService,VulnerabilitiesService
   ],
@@ -132,28 +133,11 @@ export class TreeComponent {
   }
 
 
-  getFolderData() {
-    this.fileUploadService.getFolder().subscribe(
-      (response) => {
-        console.log('Folder data retrieved successfully:', response);
-        // Faites ce que vous devez faire avec les données du dossier
-      },
-      (error) => {
-        console.error('Error retrieving folder data:', error);
 
-        if (error instanceof Error) {
-          console.error('Client-side error:', error.message);
-        } else if (error instanceof HttpErrorResponse) {
-          console.error('Server-side error status:', error.status);
-          console.error('Server-side error message:', error.message);
-        }
-      }
-    );
-  }
 
 
   IterateFolderToTree() {
-    this.getFolderData();
+
   let index=0
     this.fileUploadService.getFolder().pipe(
       map((folder: string | string[]) => {

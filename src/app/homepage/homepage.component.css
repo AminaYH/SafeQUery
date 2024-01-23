@@ -19,3 +19,11 @@
   color: #fff; /* Couleur du texte du bouton */
   border: none; /* Supprime la bordure du bouton */
 }
+/* Your global styles or component styles */
+html {
+  scroll-behavior: smooth;
+}
+/* Remove bullets from the list item */
+.nav-item {
+  list-style-type: none;
+}
