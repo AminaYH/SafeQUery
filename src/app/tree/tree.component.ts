@@ -6,21 +6,18 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatCardModule} from "@angular/material/card";
-import {HttpClientModule, HttpClient, HttpErrorResponse} from '@angular/common/http';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 // import { HighlightModule, HIGHLIGHT_OPTIONS,HighlightOptions } from 'ngx-highlightjs';
 // import { HighlightJS } from 'ngx-highlightjs';
-import { HighlightJsModule } from 'ngx-highlight-js';
-import { HighlightJsDirective } from 'ngx-highlight-js';
+import {HighlightJsDirective} from 'ngx-highlight-js';
 
-import {TreeNode}from "../interfaces/node";
+import {TreeNode} from "../interfaces/node";
 import {NodeService} from "../../services/node.service";
 import {map} from "rxjs";
-import { HighlightResult } from 'ngx-highlightjs';
 import {VulnerabilitiesService} from "../../services/vulnerabilities.service";
 import {FormsModule} from "@angular/forms";
 
-const fileData: TreeNode[] = [
-];
+const fileData: TreeNode[] = [];
 const imageFileExtensions = [
   ".jpg",
   ".jpeg",
@@ -50,49 +47,62 @@ const imageFileExtensions = [
     MatCardModule,
     NgIf, HighlightJsDirective, FormsModule
   ],
-  providers:[HttpClientModule,NodeService,VulnerabilitiesService
+  providers: [HttpClientModule, NodeService, VulnerabilitiesService
   ],
   templateUrl: './tree.component.html',
   styleUrl: './tree.component.css'
 })
 export class TreeComponent {
-  treeControl =new NestedTreeControl<TreeNode>(node =>node.children);
-  public dataSource =new MatTreeNestedDataSource<TreeNode>();
-  @Input() dataResults:TreeNode[]=[];
+  treeControl = new NestedTreeControl<TreeNode>(node => node.children);
+  public dataSource = new MatTreeNestedDataSource<TreeNode>();
+  @Input() dataResults: TreeNode[] = [];
   @Input() fileContentVariable!: string; // Change String to string
-  @Input() result!:string;
-   loading:boolean=true;
-    looadinVun:boolean=false;
-  constructor(private cdr: ChangeDetectorRef,private fileUploadService: NodeService,private http: HttpClient,private VulnerabilitiesService:VulnerabilitiesService) {
-    this.dataSource.data=fileData;
+  @Input() result!: string;
+  loading: boolean = true;
+  looadinVun: boolean = false;
+  fileName: string = '';
+
+  constructor(private cdr: ChangeDetectorRef, private fileUploadService: NodeService, private http: HttpClient, private VulnerabilitiesService: VulnerabilitiesService) {
+    this.dataSource.data = fileData;
   }
-  hasChild =(_:number,node:TreeNode)=>!!node.children && node.children.length>0;
+
+  isLoading = true;
+
+  // Simulate loading completion after 5 seconds (adjust as needed)
+  ngOnInit() {
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 5000);
+  }
+
+  hasChild = (_: number, node: TreeNode) => !!node.children && node.children.length > 0;
 
   loadData(node: TreeNode) {
     let boolean = true;
+
     console.log('Content as string:');
     this.fileUploadService.downloadFile(node.name).subscribe(
       response => {
         console.log('  string:', boolean);
-          const blob = response.body;
-          const reader = new FileReader();
-          reader.onload = () => {
-            const contentAsString = reader.result as string;
-            console.log('Content as string:', contentAsString);
-            //set content
+        const blob = response.body;
+        const reader = new FileReader();
+        reader.onload = () => {
+          const contentAsString = reader.result as string;
+          console.log('Content as string:', contentAsString);
+          //set content
+          this.fileName = node.name;
+          this.fileContentVariable = contentAsString;
 
-             this.fileContentVariable = contentAsString;
+          this.loading = false;
 
-            this.loading=false;
-
-          };
-          reader.readAsText(blob, 'UTF-8');
-        }
-
+        };
+        reader.readAsText(blob, 'UTF-8');
+      }
     );
 
 
   }
+
   // private highlightCode(): void {
   //   this.highlightService.highlightAuto(this.fileContentVariable, []).subscribe(
   //     result => {
@@ -109,36 +119,29 @@ export class TreeComponent {
   // }
 
 
-
-
-
-
-  getStatus(status:boolean){
-    if(status){
-   return 'fishier available'
-    }
-    else {
+  getStatus(status: boolean) {
+    if (status) {
+      return 'fishier available'
+    } else {
       return 'fishier pas available'
     }
   }
-  deleteFile(i:number){
-    this.dataResults.splice(i,1);
-    this.dataResults.length==0?this.loading=true :this.loading;
+
+  deleteFile(i: number) {
+    this.dataResults.splice(i, 1);
+    this.dataResults.length == 0 ? this.loading = true : this.loading;
   }
 
   selectedFolder!: FileList
 
-  onFolderChange(event:any) {
+  onFolderChange(event: any) {
     this.selectedFolder = event.target.files;
   }
 
 
-
-
-
   IterateFolderToTree() {
 
-  let index=0
+    let index = 0
     this.fileUploadService.getFolder().pipe(
       map((folder: string | string[]) => {
         if (Array.isArray(folder)) {
@@ -160,7 +163,7 @@ export class TreeComponent {
 
                 if (!currentNode) {
                   // If root node doesn't exist, create it
-                  currentNode = { name: segment, status: true, children: [] };
+                  currentNode = {name: segment, status: true, children: []};
                   fileData.push(currentNode);
                 }
               } else {
@@ -171,7 +174,7 @@ export class TreeComponent {
 
                   if (!nextNode) {
                     // If the node doesn't exist, create it
-                    nextNode = { name: segment, status: true, children: [] };
+                    nextNode = {name: segment, status: true, children: []};
                     currentNode.children = currentNode.children || [];
                     currentNode.children.push(nextNode);
                   }
@@ -195,7 +198,8 @@ export class TreeComponent {
         }
       })
     ).subscribe(
-      () => {},
+      () => {
+      },
       error => {
         console.error('Error retrieving folder data:', error);
       }
@@ -203,12 +207,12 @@ export class TreeComponent {
   }
 
 //check for sql-injection
-  CheckSqlInjection(){
+  CheckSqlInjection() {
     this.VulnerabilitiesService.checkForSQLInjection().subscribe(
       response => {
         console.log('Upload successful', response);
-        this.result= response;
-        this.looadinVun=true;
+        this.result = response;
+        this.looadinVun = true;
 
       },
       error => {
@@ -222,7 +226,6 @@ export class TreeComponent {
     console.log('Files to upload:', folder);
 
     this.fileUploadService.uploadFolder(folder).subscribe(
-
       response => {
         console.log('Upload successful', response);
       },
