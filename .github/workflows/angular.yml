@@ -1,0 +1,50 @@
+name: Build and Push Docker Image to ECR
+
+on:
+  push:
+    branches:
+      - main  # Trigger the pipeline on push to the main branch
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'  # Adjust Node.js version according to your Angular project's requirements
+
+      - name: Install dependencies
+        run: |
+          npm install
+
+      - name: Build Angular App
+        run: |
+          npm run build --prod
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build Docker Image
+        run: |
+          docker build -t angular-app:latest .
+
+      - name: Tag Docker Image
+        run: |
+          REPOSITORY_URI=${{ secrets.ECR_REGISTRY }}/front
+          docker tag angular-app:latest $REPOSITORY_URI:latest
+
+      - name: Push Docker Image to ECR
+        run: |
+          REPOSITORY_URI=${{ secrets.ECR_REGISTRY }}/front
+          docker push $REPOSITORY_URI:latest
